@@ -8,7 +8,7 @@ Meteor.methods({
           Orders.insert({
             "customer":customer,
             "type":type,
-            "status":'In Progress',
+            "status":'Open',
             "date":new Date(),
             "qty":qty,
             "price":price,
@@ -38,7 +38,7 @@ Meteor.methods({
           Orders.insert({
             "customer":customer,
             "type":type,
-            "status":'In Progress',
+            "status":'Open',
             "date":new Date(),
             "qty":qty,
             "price":price,
@@ -71,7 +71,7 @@ Meteor.methods({
           Orders.insert({
             "customer":customer,
             "type":type,
-            "status":'In Progress',
+            "status":'Open',
             "date":new Date(),
             "qty":qty,
             "price":price,
