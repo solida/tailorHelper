@@ -1,13 +1,23 @@
 <head>
   <title>Tailor Helper</title>
+  <link rel="shortcut icon" href="/img/Barber Scissors-48.ico" type="image/x-icon">
+  <link href="/css/tailor_helper.css" rel="stylesheet" type="text/css">
+  <link href="/css/mdl-selectfield.css" rel="stylesheet" type="text/css">
+  <link href="/css/mdl-date-textfield.min.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
-
+  <script type="text/javascript" src="/js/mdl-selectfield.js"></script>
+  <script type="text/javascript" src="/js/mdl-date-textfield.min.js"></script>
+  <script type="text/javascript" src="/dict/handlebars.min.js"></script>
+  <script type="text/javascript" src="/js/tailor_helper.js"></script>
 </body>
 
 <template name="mainLayout">
 <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
-  {{> header}}
-  {{> yield}}
+    {{> header}}
+    <div class="mdl-grid">
+        {{> yield}}
+    </div>
 </div>
 </template>

@@ -1,0 +1,241 @@
+<template name="createOrder">
+  <div class="mdl-cell mdl-cell--12-col">
+    <h4 style="text-align:center;">Create New Order</h4>
+    <form action="#" id="f_create_order">
+      <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col" id="type_control">
+            {{> typeControl}}
+        </div>
+        <div class="mdl-cell mdl-cell--4-col" id="order_control">
+            {{> orderControl}}
+        </div>
+        <div class="mdl-cell mdl-cell--4-col" id="info_control">
+            {{> infoControl}}
+        </div>
+      </div>
+		</form>
+  </div>
+</template>
+<template name="typeControl">
+  <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+    <select class="mdl-selectfield__select" id="select_customer" name="customer" required>
+      <option value=""></option>
+      {{#each customers}}
+       <option value="{{_id}}">{{lname}} {{fname}}</option>
+      {{/each}}
+    </select>
+    <div class="mdl-selectfield__icon"><i class="material-icons">arrow_drop_down</i></div>
+    <label class="mdl-selectfield__label" for="professsion">Customer</label>
+  </div>
+  <br/>
+  <div class="mdl-selectfield mdl-js-selectfield mdl-selectfield--floating-label">
+    <select class="mdl-selectfield__select" id="select_type" name="type">
+      {{#each order_type}}
+       <option value="{{.}}">{{.}}</option>
+      {{/each}}
+    </select>
+    <div class="mdl-selectfield__icon"><i class="material-icons">arrow_drop_down</i></div>
+    <label class="mdl-selectfield__label" for="professsion">Type</label>
+  </div>
+  <br/>
+</template>
+<template name="orderControl">
+  {{#if isCurrentType current_type "Shirt"}}
+    {{> shirtForm}}
+  {{else if isCurrentType current_type 'Jacket'}}
+    {{> jacketForm}}
+  {{else if isCurrentType current_type 'Trouser'}}
+    {{> trouserForm}}
+  {{else}}
+    {{> shirtForm}}
+  {{/if}}
+</template>
+<template name="infoControl">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" id="qty" required/>
+    <label class="mdl-textfield__label" for="username">Quantity</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" id="price" required/>
+    <label class="mdl-textfield__label" for="username">Price</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" id="book" required/>
+    <label class="mdl-textfield__label" for="username">Money For Booking</label>
+  </div>
+  <div class="mdl-date-textfield mdl-js-date-textfield mdl-date-textfield--floating-label">
+    <input class="mdl-date-textfield__input" type="text" id="expectation_date" required>
+    <label class="mdl-date-textfield__label" for="sample4">Expectation Date</label>
+    <span class="mdl-date-textfield__error">MM/DD/YYYY</span>
+</div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" id="notes"/>
+    <label class="mdl-textfield__label" for="username">Notes</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+    Submit
+   </button>
+ </div>
+</template>
+<template name="shirtForm">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="neck">
+    <label class="mdl-textfield__label" for="phone">Neck</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="full_chest">
+    <label class="mdl-textfield__label" for="phone">Full Chest</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="full_shoulder">
+    <label class="mdl-textfield__label" for="phone">Full Shoulder</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="sleeve">
+    <label class="mdl-textfield__label" for="phone">Sleeve</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="bicep">
+    <label class="mdl-textfield__label" for="phone">Bicep</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="wrist">
+    <label class="mdl-textfield__label" for="phone">Wrist</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="waist">
+    <label class="mdl-textfield__label" for="phone">Waist</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="hips">
+    <label class="mdl-textfield__label" for="phone">Hips</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+</template>
+<template name="jacketForm">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="neck">
+    <label class="mdl-textfield__label" for="phone">Neck</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="full_chest">
+    <label class="mdl-textfield__label" for="phone">Full Chest</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="full_shoulder">
+    <label class="mdl-textfield__label" for="phone">Full Shoulder</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="sleeve">
+    <label class="mdl-textfield__label" for="phone">Sleeve</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="bicep">
+    <label class="mdl-textfield__label" for="phone">Bicep</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="wrist">
+    <label class="mdl-textfield__label" for="phone">Wrist</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="waist">
+    <label class="mdl-textfield__label" for="phone">Waist</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="hips">
+    <label class="mdl-textfield__label" for="phone">Hips</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="front_jacket_length">
+    <label class="mdl-textfield__label" for="phone">Front Jacket Length</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="front_chest_width">
+    <label class="mdl-textfield__label" for="phone">Front Chest Width</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="back_width">
+    <label class="mdl-textfield__label" for="phone">Back Width</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="half_shoulder_width">
+    <label class="mdl-textfield__label" for="phone">Half Shoulder Width</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="full_back_length">
+    <label class="mdl-textfield__label" for="phone">Full Back Length</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="half_back_length">
+    <label class="mdl-textfield__label" for="phone">Half Back Length</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="trouser_waist">
+    <label class="mdl-textfield__label" for="phone">Trouser Waist</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="full_sleeve">
+    <label class="mdl-textfield__label" for="phone">Full Sleeve</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+</template>
+<template name="trouserForm">
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="hips">
+    <label class="mdl-textfield__label" for="phone">Hips</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="trouser_waist">
+    <label class="mdl-textfield__label" for="phone">Trouser Waist</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="trouser_outseam">
+    <label class="mdl-textfield__label" for="phone">Trouser Outseam</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="trouser_inseam">
+    <label class="mdl-textfield__label" for="phone">Trouser Inseam</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="thigh">
+    <label class="mdl-textfield__label" for="phone">Thigh</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="knee">
+    <label class="mdl-textfield__label" for="phone">Knee</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" type="text" pattern="[0-9]*" id="crotch">
+    <label class="mdl-textfield__label" for="phone">Crotch</label>
+    <span class="mdl-textfield__error">Digits only</span>
+  </div>
+</template>

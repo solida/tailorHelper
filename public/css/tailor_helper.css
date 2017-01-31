@@ -1,0 +1,16 @@
+/* CSS declarations go here */
+.t_center{
+  text-align: center;
+}
+.t_left{
+  text-align: left;
+}
+.t_right{
+  text-align: right;
+}
+.t_float_right{
+  float: : right;
+}
+.t_float_left{
+  float: right;
+}
