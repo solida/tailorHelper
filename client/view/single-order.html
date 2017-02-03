@@ -1,0 +1,124 @@
+<template name="singleOrder">
+    <div class="mdl-cell mdl-cell--12-col">
+    <h4  style="text-align:center;" >Card Detail</h4>
+    <div class="mdl-cell mdl-cell--12-col">
+      <h5>Order Information</h5>
+      <table class="tbl_order_detail">
+        <tr>
+          <td>Type</td><td>:</td><td>{{type}}</td>
+          <td class="order_space"></td>
+          <td>Status</td><td>:</td><td>{{status}}</td>
+          <td class="order_space"></td>
+          <td>Date</td><td>:</td><td>{{formatDate date}}</td>
+          <td class="order_space"></td>
+          <td>Expectation Date</td><td>:</td><td>{{formatDate expectation_date}}</td>
+        </tr>
+        <tr>
+          <td>Quantity</td><td>:</td><td>{{qty}}</td>
+          <td class="order_space"></td>
+          <td>Price</td><td>:</td><td>{{price}}</td>
+          <td class="order_space"></td>
+          <td>Money for Book</td><td>:</td><td>{{book}} $</td>
+          <td class="order_space"></td>
+          <td>Customers</td><td>:</td><td>{{#with get_customer customer}}
+             {{lname}} {{fname}}
+          {{/with}}</td>
+        </tr>
+      </table>
+    </div>
+      <h5>Measurment  Information</h5>
+        {{#if isCurrentType type "Shirt"}}
+          {{> shirtDetail}}
+        {{else if isCurrentType type 'Jacket'}}
+          {{> jacketDetail}}
+        {{else if isCurrentType type 'Trouser'}}
+          {{> trouserDetail}}
+        {{else}}
+          {{> shirtDetail}}
+        {{/if}}
+  </div>
+</template>
+<template name="shirtDetail">
+  <table class="tbl_order_detail">
+    <tr>
+      <td>Neck</td><td>:</td><td>{{neck}} cm</td>
+      <td class="order_space"></td>
+      <td>full Chest</td><td>:</td><td>{{full_chest}} cm</td>
+      <td class="order_space"></td>
+      <td>Full Shoulder</td><td>:</td><td>{{full_shoulder}} cm</td>
+      <td class="order_space"></td>
+      <td>Sleeve</td><td>:</td><td>{{sleeve}} cm</td>
+    </tr>
+    <tr>
+      <td>Bicep</td><td>:</td><td>{{bicep}} cm</td>
+      <td class="order_space"></td>
+      <td>Wrist</td><td>:</td><td>{{wrist}} cm</td>
+      <td class="order_space"></td>
+      <td>Waist</td><td>:</td><td>{{waist}} cm</td>
+      <td class="order_space"></td>
+      <td>Hips</td><td>:</td><td>{{hips}} cm</td>
+    </tr>
+  </table>
+</template>
+<template name="jacketDetail">
+  <table class="tbl_order_detail">
+    <tr>
+      <td>Neck</td><td>:</td><td>{{neck}}</td>
+      <td class="order_space"></td>
+      <td>full Chest</td><td>:</td><td>{{full_chest}} cm</td>
+      <td class="order_space"></td>
+      <td>Full Shoulder</td><td>:</td><td>{{full_shoulder}} cm</td>
+      <td class="order_space"></td>
+      <td>Sleeve</td><td>:</td><td>{{sleeve}} cm</td>
+    </tr>
+    <tr>
+      <td>Bicep</td><td>:</td><td>{{bicep}} cm</td>
+      <td class="order_space"></td>
+      <td>Wrist</td><td>:</td><td>{{wrist}} cm</td>
+      <td class="order_space"></td>
+      <td>Waist</td><td>:</td><td>{{waist}} cm</td>
+      <td class="order_space"></td>
+      <td>Hips</td><td>:</td><td>{{hips}} cm</td>
+    </tr>
+    <tr>
+      <td>Front Jacket Length</td><td>:</td><td>{{front_jacket_length}} cm</td>
+      <td class="order_space"></td>
+      <td>Front Chest Width</td><td>:</td><td>{{front_chest_width}} cm</td>
+      <td class="order_space"></td>
+      <td>Back Width</td><td>:</td><td>{{back_width}} cm</td>
+      <td class="order_space"></td>
+      <td>Half Shoulder Width</td><td>:</td><td>{{half_shoulder_width}} cm</td>
+    </tr>
+    <tr>
+      <td>Full Back Length</td><td>:</td><td>{{full_back_length}} cm</td>
+      <td class="order_space"></td>
+      <td>Half Back Length</td><td>:</td><td>{{half_back_length}} cm</td>
+      <td class="order_space"></td>
+      <td>Trouser Waist</td><td>:</td><td>{{trouser_waist}} cm</td>
+      <td class="order_space"></td>
+      <td>Full Sleeve</td><td>:</td><td>{{full_sleeve}} cm</td>
+    </tr>
+  </table>
+</template>
+<template name="trouserDetail">
+  <table class="tbl_order_detail">
+    <tr>
+      <td>Hips</td><td>:</td><td>{{hips}} cm</td>
+      <td class="order_space"></td>
+      <td>Trouser_waist</td><td>:</td><td>{{trouser_waist}} cm</td>
+      <td class="order_space"></td>
+      <td>Trouser_outseam</td><td>:</td><td>{{trouser_outseam}} cm</td>
+      <td class="order_space"></td>
+      <td>Trouser_inseam</td><td>:</td><td>{{trouser_inseam}} cm</td>
+    </tr>
+    <tr>
+      <td>Thigh</td><td>:</td><td>{{thigh}} cm</td>
+      <td class="order_space"></td>
+      <td>Knee</td><td>:</td><td>{{knee}} cm</td>
+      <td class="order_space"></td>
+      <td>Crotch</td><td>:</td><td>{{crotch}} cm</td>
+      <td class="order_space"></td>
+      <td></td><td></td><td></td>
+    </tr>
+  </table>
+</template>

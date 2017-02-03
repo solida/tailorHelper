@@ -1,0 +1,39 @@
+<template name="orders">
+  <div class="mdl-cell mdl-cell--12-col">
+    <h4 style="text-align:center;">Order List</h4>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Expectation Date</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Book($)</th>
+          <th>Customer</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each orders}}
+       <tr>
+         <td><strong><a href="/order/{{_id}}">{{type}}</a></strong></td>
+         <td>{{status}}</td>
+         <td>{{formatDate date}}</td>
+         <td>{{formatDate expectation_date}}</td>
+         <td>{{qty}}</td>
+         <td>{{price}}</td>
+         <td>{{book}}</td>
+         <td>
+           {{#with get_customer customer}}
+              {{lname}} {{fname}}
+           {{/with}}
+         </td>
+         <td><a href="#"><button style="background:red;" data-id="{{_id}}" class="order_delete mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Delete</button></a></td>
+       </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+</template>

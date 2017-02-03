@@ -1,4 +1,7 @@
 Meteor.methods({
+    'deleteOrder':function(id){
+      Orders.remove( { _id: id }, 1)
+     },
     'createOrderShirt' : function(
         customer,type,
         qty,price,book,expectation_date,note,
@@ -13,7 +16,7 @@ Meteor.methods({
             "qty":qty,
             "price":price,
             "book":book,
-            "expectation_date":expectation_date,
+            "expectation_date":new Date(expectation_date),
             "note":note,
             "neck":neck,
             "full_chest":full_chest,

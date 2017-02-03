@@ -34,7 +34,6 @@ Template.createOrder.events({
       var customer = event.target.select_customer.value;
       Session.set("select_customer",customer);
       current_type = Session.get("current_type")
-      console.log(current_type)
       var customer = event.target.select_customer.value;
       var type = event.target.select_type.value;
 
@@ -44,7 +43,6 @@ Template.createOrder.events({
       var expectation_date = event.target.expectation_date.value;
       var notes = event.target.notes.value;
       if(current_type=="Shirt"){
-        console.log('add shirt')
         var neck = event.target.neck.value;
         var full_chest = event.target.full_chest.value;
         var full_shoulder = event.target.full_shoulder.value;
@@ -62,12 +60,11 @@ Template.createOrder.events({
                alert("fail to add order: "+error)
              }
              else {
-              console.log('success')
+              Router.go('orders');
              }
         });
       }
       else if (current_type=="Jacket") {
-        console.log("add jacket")
         var neck = event.target.neck.value;
         var full_chest = event.target.full_chest.value;
         var full_shoulder = event.target.full_shoulder.value;
@@ -96,7 +93,7 @@ Template.createOrder.events({
                alert("fail to add order: "+error)
              }
              else {
-              console.log('success')
+              Router.go('orders');
              }
         });
 
@@ -121,7 +118,7 @@ Template.createOrder.events({
                alert("fail to add order: "+error)
              }
              else {
-              console.log('success')
+              Router.go('orders');
              }
         });
       }
@@ -144,4 +141,10 @@ Template.orderControl.helpers({
   current_type: function(){
     return Session.get("current_type");
   }
+});
+
+Template.singleOrder.helpers({
+  'get_customer':function(id){
+  return Customers.findOne({'_id':id});
+}
 });

@@ -63,11 +63,10 @@
     <input class="mdl-textfield__input" type="text" id="book" required/>
     <label class="mdl-textfield__label" for="username">Money For Booking</label>
   </div>
-  <div class="mdl-date-textfield mdl-js-date-textfield mdl-date-textfield--floating-label">
-    <input class="mdl-date-textfield__input" type="text" id="expectation_date" required>
-    <label class="mdl-date-textfield__label" for="sample4">Expectation Date</label>
-    <span class="mdl-date-textfield__error">MM/DD/YYYY</span>
-</div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input type="text" class="mdl-textfield__input mdl-datepicker__input" required id="expectation_date" data-pattern="DD/MM/YYYY" data-min="today" value="" />
+    <label class="mdl-textfield__label" for="date-input">Expectation Date</label>
+  </div>
   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
     <input class="mdl-textfield__input" type="text" id="notes"/>
     <label class="mdl-textfield__label" for="username">Notes</label>

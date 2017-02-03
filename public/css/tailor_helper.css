@@ -14,3 +14,15 @@
 .t_float_left{
   float: right;
 }
+.tbl_single_order{
+  border:none !important;
+}
+.tbl_single_order tr, .tbl_single_order td{
+  border:none !important;
+}
+.tbl_order_detail td{
+  padding: 5px;
+}
+.order_space{
+  padding-left: 50px !important;
+}
