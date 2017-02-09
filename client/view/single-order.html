@@ -1,32 +1,66 @@
 <template name="singleOrder">
     <div class="mdl-cell mdl-cell--12-col">
-    <h4  style="text-align:center;" >Card Detail</h4>
+    <h4  style="text-align:center;">Order Detail</h4>
     <div class="mdl-cell mdl-cell--12-col">
       <h5>Order Information</h5>
       <table class="tbl_order_detail">
         <tr>
-          <td>Type</td><td>:</td><td>{{type}}</td>
+          <td>Type</td><td>:</td>
+          <td>
+            <span id="type" class="editable" data-type="select" data-mode="inline" data-placeholder="Enter type" data-value="{{type}}" data-pk="{{_id}}"  data-name="type" data-display="false">{{defaultValue type}}</span>
+          </td>
           <td class="order_space"></td>
-          <td>Status</td><td>:</td><td>{{status}}</td>
+          <td>Status</td><td>:</td>
+          <td>
+            <span id="status" class="editable" data-type="select" data-mode="inline" data-placeholder="Enter status" data-value="{{status}}" data-pk="{{_id}}" data-name="status" data-display="false">{{defaultValue status}}</span>
+          </td>
           <td class="order_space"></td>
-          <td>Date</td><td>:</td><td>{{formatDate date}}</td>
+          <td>Date</td><td>:</td>
+          <td>
+            <span id="date" data-type="date" data-title="Select date" data-value="{{formatDateXeditable date}}" data-pk="{{_id}}" data-name="date" data-clear=false data-format="yyyy-mm-dd" data-viewformat="yyyy-mm-dd" data-display="false">{{formatDateXeditable date}}</span>
+          </td>
           <td class="order_space"></td>
-          <td>Expectation Date</td><td>:</td><td>{{formatDate expectation_date}}</td>
+          <td>Expectation Date</td><td>:</td>
+          <td>
+            <span id="expectation_date" data-type="date" data-title="Select date" data-value="{{formatDateXeditable expectation_date}}" data-pk="{{_id}}" data-name="expectation_date" data-clear="false" data-format="yyyy-mm-dd" data-viewformat="yyyy-mm-dd" data-display="false">{{formatDateXeditable expectation_date}}</span>
+          </td>
         </tr>
         <tr>
-          <td>Quantity</td><td>:</td><td>{{qty}}</td>
+          <td>Quantity</td><td>:</td>
+          <td>
+            <span id="qty" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter quantity" data-value="{{qty}}" data-pk="{{_id}}" data-name="qty" data-display="false">{{defaultValue qty}}</span></td>
           <td class="order_space"></td>
-          <td>Price</td><td>:</td><td>{{price}}</td>
+          <td>Price</td><td>:</td>
+          <td>
+            <span id="price" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter price" data-value="{{price}}" data-pk="{{_id}}" data-name="price" data-display="false">{{defaultValue price}}</span> $
+         </td>
           <td class="order_space"></td>
-          <td>Money for Book</td><td>:</td><td>{{book}} $</td>
+          <td>Money for Book</td><td>:</td>
+          <td>
+            <span id="book" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter money for book" data-value="{{book}}" data-pk="{{_id}}" data-name="book" data-display="false">{{defaultValue book}}</span> $
+          </td>
           <td class="order_space"></td>
-          <td>Customers</td><td>:</td><td>{{#with get_customer customer}}
-             {{lname}} {{fname}}
-          {{/with}}</td>
+          <td>Customers</td><td>:</td>
+          <td>
+            <span id="customer" class="editable" data-type="select" data-mode="inline" data-placeholder="Enter customer" data-value="{{customer}}" data-pk="{{_id}}" data-name="customer" data-display="false">
+            {{get_customer customer}}
+            </span>
+            &nbsp;&nbsp;
+            <a href="/customer/{{customer}}"><span class="glyphicon glyphicon-link" style="font-size:20px; color:green; top:2px"></span></a>
+
+          </td>
+        </tr>
+        <tr>
+          <td>Notes</td><td>:</td>
+          <td>
+            <span id="notes" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter note" data-value="{{notes}}" data-pk="{{_id}}" data-name="notes" data-display="false">{{defaultValue notes}}</span>
+          </td>
+          <td class="order_space"></td>
+
         </tr>
       </table>
     </div>
-      <h5>Measurment  Information</h5>
+      <h5>Measurement  Information</h5>
         {{#if isCurrentType type "Shirt"}}
           {{> shirtDetail}}
         {{else if isCurrentType type 'Jacket'}}
@@ -41,82 +75,176 @@
 <template name="shirtDetail">
   <table class="tbl_order_detail">
     <tr>
-      <td>Neck</td><td>:</td><td>{{neck}} cm</td>
+      <td>Neck</td><td>:</td>
+      <td>
+        <span id="neck" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter neck" data-value="{{neck}}" data-pk="{{_id}}" data-name="neck" data-display="false">{{defaultValue neck}}</span> cm
+       </td>
       <td class="order_space"></td>
-      <td>full Chest</td><td>:</td><td>{{full_chest}} cm</td>
+      <td>full Chest</td><td>:</td>
+      <td>
+        <span id="full_chest" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter full chest" data-value="{{full_chest}}" data-pk="{{_id}}" data-name="full_chest" data-display="false">{{defaultValue full_chest}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Full Shoulder</td><td>:</td><td>{{full_shoulder}} cm</td>
+      <td>Full Shoulder</td><td>:</td>
+      <td>
+        <span id="full_shoulder" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter full chest" data-value="{{full_shoulder}}" data-pk="{{_id}}" data-name="full_shoulder" data-display="false">{{defaultValue full_shoulder}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Sleeve</td><td>:</td><td>{{sleeve}} cm</td>
+      <td>Sleeve</td><td>:</td>
+      <td>
+        <span id="sleeve" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter sleeve" data-value="{{full_shoulder}}" data-pk="{{_id}}" data-name="sleeve" data-display="false">{{defaultValue sleeve}}</span> cm
+      </td>
     </tr>
     <tr>
-      <td>Bicep</td><td>:</td><td>{{bicep}} cm</td>
+      <td>Bicep</td><td>:</td>
+      <td>
+        <span id="bicep" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter bicep" data-value="{{bicep}}" data-pk="{{_id}}" data-name="bicep" data-display="false">{{defaultValue bicep}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Wrist</td><td>:</td><td>{{wrist}} cm</td>
+      <td>Wrist</td><td>:</td>
+      <td>
+        <span id="wrist" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter wrist" data-value="{{wrist}}" data-pk="{{_id}}" data-name="wrist" data-display="false">{{defaultValue wrist}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Waist</td><td>:</td><td>{{waist}} cm</td>
+      <td>Waist</td><td>:</td>
+      <td>
+        <span id="waist" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter waist" data-value="{{waist}}" data-pk="{{_id}}" data-name="waist" data-display="false">{{defaultValue waist}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Hips</td><td>:</td><td>{{hips}} cm</td>
+      <td>Hips</td><td>:</td>
+      <td>
+        <span id="hips" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter hips" data-value="{{hips}}" data-pk="{{_id}}" data-name="hips" data-display="false">{{defaultValue hips}}</span> cm
+      </td>
     </tr>
   </table>
 </template>
 <template name="jacketDetail">
   <table class="tbl_order_detail">
     <tr>
-      <td>Neck</td><td>:</td><td>{{neck}}</td>
+      <td>Neck</td><td>:</td>
+      <td>
+        <span id="neck" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter neck" data-value="{{neck}}" data-pk="{{_id}}" data-name="neck" data-display="false">{{defaultValue neck}}</span> cm
+       </td>
       <td class="order_space"></td>
-      <td>full Chest</td><td>:</td><td>{{full_chest}} cm</td>
+      <td>full Chest</td><td>:</td>
+      <td>
+        <span id="full_chest" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter full chest" data-value="{{full_chest}}" data-pk="{{_id}}" data-name="full_chest" data-display="false">{{defaultValue full_chest}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Full Shoulder</td><td>:</td><td>{{full_shoulder}} cm</td>
+      <td>Full Shoulder</td><td>:</td>
+      <td>
+        <span id="full_shoulder" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter full chest" data-value="{{full_shoulder}}" data-pk="{{_id}}" data-name="full_shoulder" data-display="false">{{defaultValue full_shoulder}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Sleeve</td><td>:</td><td>{{sleeve}} cm</td>
+      <td>Sleeve</td><td>:</td>
+      <td>
+        <span id="sleeve" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter sleeve" data-value="{{full_shoulder}}" data-pk="{{_id}}" data-name="sleeve" data-display="false">{{defaultValue sleeve}}</span> cm
+      </td>
     </tr>
     <tr>
-      <td>Bicep</td><td>:</td><td>{{bicep}} cm</td>
+      <td>Bicep</td><td>:</td>
+      <td>
+        <span id="bicep" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter bicep" data-value="{{bicep}}" data-pk="{{_id}}" data-name="bicep" data-display="false">{{defaultValue bicep}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Wrist</td><td>:</td><td>{{wrist}} cm</td>
+      <td>Wrist</td><td>:</td>
+      <td>
+        <span id="wrist" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter wrist" data-value="{{wrist}}" data-pk="{{_id}}" data-name="wrist" data-display="false">{{defaultValue wrist}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Waist</td><td>:</td><td>{{waist}} cm</td>
+      <td>Waist</td><td>:</td>
+      <td>
+        <span id="waist" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter waist" data-value="{{waist}}" data-pk="{{_id}}" data-name="waist" data-display="false">{{defaultValue waist}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Hips</td><td>:</td><td>{{hips}} cm</td>
+      <td>Hips</td><td>:</td>
+      <td>
+        <span id="hips" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter hips" data-value="{{hips}}" data-pk="{{_id}}" data-name="hips" data-display="false">{{defaultValue hips}}</span> cm
+      </td>
     </tr>
     <tr>
-      <td>Front Jacket Length</td><td>:</td><td>{{front_jacket_length}} cm</td>
+      <td>Front Jacket Length</td><td>:</td>
+      <td>
+        <span id="front_jacket_length" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter front jacket length" data-value="{{front_jacket_length}}" data-pk="{{_id}}" data-name="front_jacket_length" data-display="false">{{defaultValue front_jacket_length}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Front Chest Width</td><td>:</td><td>{{front_chest_width}} cm</td>
+      <td>Front Chest Width</td><td>:</td>
+      <td>
+        <span id="front_chest_width" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter front chest width" data-value="{{front_chest_width}}" data-pk="{{_id}}" data-name="front_chest_width" data-display="false">{{defaultValue front_chest_width}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Back Width</td><td>:</td><td>{{back_width}} cm</td>
+      <td>Back Width</td><td>:</td>
+      <td>
+        <span id="back_width" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter back width" data-value="{{back_width}}" data-pk="{{_id}}" data-name="back_width" data-display="false">{{defaultValue back_width}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Half Shoulder Width</td><td>:</td><td>{{half_shoulder_width}} cm</td>
+      <td>Half Shoulder Width</td><td>:</td>
+      <td>
+        <span id="half_shoulder_width" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter half shoulder width" data-value="{{half_shoulder_width}}" data-pk="{{_id}}" data-name="half_shoulder_width" data-display="false">{{defaultValue half_shoulder_width}}</span> cm
+      </td>
     </tr>
     <tr>
-      <td>Full Back Length</td><td>:</td><td>{{full_back_length}} cm</td>
+      <td>Full Back Length</td><td>:</td>
+      <td>
+        <span id="full_back_length" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter full back length" data-value="{{full_back_length}}" data-pk="{{_id}}" data-name="full_back_length" data-display="false">{{defaultValue full_back_length}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Half Back Length</td><td>:</td><td>{{half_back_length}} cm</td>
+      <td>Half Back Length</td><td>:</td>
+      <td>
+        <span id="half_back_length" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter half back length" data-value="{{half_back_length}}" data-pk="{{_id}}" data-name="half_back_length" data-display="false">{{defaultValue half_back_length}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Trouser Waist</td><td>:</td><td>{{trouser_waist}} cm</td>
+      <td>Trouser Waist</td><td>:</td>
+      <td>
+        <span id="trouser_waist" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter trouser waist" data-value="{{trouser_waist}}" data-pk="{{_id}}" data-name="trouser_waist" data-display="false">{{defaultValue trouser_waist}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Full Sleeve</td><td>:</td><td>{{full_sleeve}} cm</td>
+      <td>Full Sleeve</td><td>:</td>
+      <td>
+        <span id="full_sleeve" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter full_sleeve" data-value="{{full_sleeve}}" data-pk="{{_id}}" data-name="full_sleeve" data-display="false">{{defaultValue full_sleeve}}</span> cm
+      </td>
     </tr>
   </table>
 </template>
 <template name="trouserDetail">
   <table class="tbl_order_detail">
     <tr>
-      <td>Hips</td><td>:</td><td>{{hips}} cm</td>
+      <td>Hips</td><td>:</td>
+      <td>
+        <span id="hips" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter hips" data-value="{{hips}}" data-pk="{{_id}}" data-name="hips" data-display="false">{{defaultValue hips}}</span> cm
+
+      </td>
       <td class="order_space"></td>
-      <td>Trouser_waist</td><td>:</td><td>{{trouser_waist}} cm</td>
+      <td>Trouser_waist</td><td>:</td>
+      <td>
+        <span id="trouser_waist" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter trouser waist" data-value="{{trouser_waist}}" data-pk="{{_id}}" data-name="trouser_waist" data-display="false">{{defaultValue trouser_waist}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Trouser_outseam</td><td>:</td><td>{{trouser_outseam}} cm</td>
+      <td>Trouser_outseam</td><td>:</td>
+      <td>
+        <span id="trouser_outseam" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter trouser outseam" data-value="{{trouser_outseam}}" data-pk="{{_id}}" data-name="trouser_outseam" data-display="false">{{defaultValue trouser_outseam}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Trouser_inseam</td><td>:</td><td>{{trouser_inseam}} cm</td>
+      <td>Trouser_inseam</td><td>:</td>
+      <td>
+        <span id="trouser_inseam" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter trouser inseam" data-value="{{trouser_inseam}}" data-pk="{{_id}}" data-name="trouser_inseam" data-display="false">{{defaultValue trouser_inseam}}</span> cm
+      </td>
     </tr>
     <tr>
-      <td>Thigh</td><td>:</td><td>{{thigh}} cm</td>
+      <td>Thigh</td><td>:</td>
+      <td>
+        <span id="thigh" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter thigh" data-value="{{thigh}}" data-pk="{{_id}}" data-name="thigh" data-display="false">{{defaultValue thigh}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Knee</td><td>:</td><td>{{knee}} cm</td>
+      <td>Knee</td><td>:</td>
+      <td>
+        <span id="knee" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter knee" data-value="{{knee}}" data-pk="{{_id}}" data-name="knee" data-display="false">{{defaultValue knee}}</span> cm
+      </td>
       <td class="order_space"></td>
-      <td>Crotch</td><td>:</td><td>{{crotch}} cm</td>
+      <td>Crotch</td><td>:</td>
+      <td>
+        <span id="crotch" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter crotch" data-value="{{crotch}}" data-pk="{{_id}}" data-name="crotch" data-display="false">{{defaultValue crotch}}</span> cm
+      </td>
       <td class="order_space"></td>
       <td></td><td></td><td></td>
     </tr>

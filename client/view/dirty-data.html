@@ -1,0 +1,91 @@
+<template name="dirtyData">
+  <div class="mdl-cell mdl-cell--12-col">
+    <h4 style="text-align:center;">Dirty Data</h4>
+    <div class="panel with-nav-tabs panel-default">
+      <div class="panel-heading">
+        <ul class="nav nav-tabs">
+          <li  class="active"><a href="#orders_padding" data-toggle="tab">Orders Padding</a></li>
+          <li><a href="#order_not_taken" data-toggle="tab">Orders Not Taken</a></li>
+        </ul>
+      </div>
+    <div class="panel-body">
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="orders_padding">
+          <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="tbl_orders_padding">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Expectation Date</th>
+                <th>Since</th>
+                <th>Quantity</th>
+                <th>Status</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {{#each orders_padding}}
+             <tr>
+               <td><strong><a href="/order/{{_id}}">{{type}}</a></strong></td>
+               <td>
+                <a href="/customer/{{customer}}">
+                 {{get_customer customer}}
+                </a>
+               </td>
+               <td>{{formatDate date}}</td>
+               <td>{{formatDate expectation_date}}</td>
+               <td>{{since expectation_date}}</td>
+               <td>{{qty}}</td>
+               <td>{{status}}</td>
+             </tr>
+            {{/each}}
+            </tbody>
+          </table>
+        </div>
+        <div class="tab-pane fade" id="order_not_taken">
+          <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="tbl_orders_not_taken">
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Customer</th>
+                <th>Date</th>
+                <th>Expectation Date</th>
+                <th>Since</th>
+                <th>Quantity</th>
+                <th>Status</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              {{#each order_not_yet_takens}}
+             <tr>
+               <td><strong><a href="/order/{{_id}}">{{type}}</a></strong></td>
+               <td>
+                  <a href="/customer/{{customer}}">
+                    {{get_customer customer}}
+                  </a>
+               </td>
+               <td>{{formatDate date}}</td>
+               <td>{{formatDate expectation_date}}</td>
+               <td>{{since expectation_date}}</td>
+               <td>{{qty}}</td>
+               <td>{{status}}</td>
+             </tr>
+            {{/each}}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    $('#tbl_orders_padding').dataTable({
+      "order": [3, "desc"],
+    })
+    $('#tbl_orders_not_taken').dataTable({
+      "order": [3, "desc"],
+    })
+</script>
+</template>

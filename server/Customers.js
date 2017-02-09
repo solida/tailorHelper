@@ -13,12 +13,18 @@ Meteor.methods({
             })
           }
     },
-    'editCustomer' : function(
-          id,fname,lname,phone
-        ){
-          Customers.update(
-              {_id :id},
-              {$set: {'fname': fname,'lname':lname,'phone':phone}}
-          );
-    },
+    "deleteCustomer" :function(id){
+      Customers.remove( { _id: id }, 1)
+     },
+     "editCustomer" : function(
+         id,field,data
+         ){
+           var obj = {};
+           obj[field] = data;
+           Customers.update(
+                      {_id :id},
+                      {$set:obj}
+           )
+           return
+     },
 });

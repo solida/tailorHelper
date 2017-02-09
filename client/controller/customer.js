@@ -22,5 +22,21 @@ Template.createCustomer.events({
           }
         });
   }
-
 });
+Template.customerDetail.rendered = function() {
+  $('#lname,#fname,#phone').editable({
+    success: function(response, newValue) {
+      var id = $(this).data('pk');
+      var field = $(this).data('name');
+      var data = newValue
+        Meteor.call('editCustomer',
+                  id,field,data,
+                  function (error, result) {
+                     if(error){
+                       return error
+                     }
+                });
+
+    }
+  });
+}

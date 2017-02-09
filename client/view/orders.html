@@ -1,17 +1,17 @@
 <template name="orders">
   <div class="mdl-cell mdl-cell--12-col">
     <h4 style="text-align:center;">Order List</h4>
-    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="tbl_order_list">
       <thead>
         <tr>
           <th>Type</th>
-          <th>Status</th>
+          <th>Customer</th>
           <th>Date</th>
           <th>Expectation Date</th>
           <th>Quantity</th>
           <th>Price</th>
           <th>Book($)</th>
-          <th>Customer</th>
+          <th>Status</th>
           <th>Delete</th>
         </tr>
       </thead>
@@ -19,21 +19,28 @@
         {{#each orders}}
        <tr>
          <td><strong><a href="/order/{{_id}}">{{type}}</a></strong></td>
-         <td>{{status}}</td>
-         <td>{{formatDate date}}</td>
-         <td>{{formatDate expectation_date}}</td>
+         <td>
+           <a href="/customer/{{customer}}">
+            {{get_customer customer}}
+           </a>
+         </td>
+         <td>{{formatDateXeditable date}}</td>
+         <td>{{formatDateXeditable expectation_date}}</td>
          <td>{{qty}}</td>
          <td>{{price}}</td>
          <td>{{book}}</td>
-         <td>
-           {{#with get_customer customer}}
-              {{lname}} {{fname}}
-           {{/with}}
-         </td>
+         <td>{{status}}</td>
          <td><a href="#"><button style="background:red;" data-id="{{_id}}" class="order_delete mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored">Delete</button></a></td>
        </tr>
       {{/each}}
       </tbody>
     </table>
   </div>
+  {{#if orders}}
+  <script type="text/javascript">
+      $('#tbl_order_list').dataTable({
+        "order": [3, "desc"],
+      })
+  </script>
+  {{/if}}
 </template>

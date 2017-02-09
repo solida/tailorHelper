@@ -1,0 +1,31 @@
+<template name="customers">
+  <div class="mdl-cell mdl-cell--12-col">
+    <h4 style="text-align:center;">
+      Customer List &nbsp;&nbsp;
+      <a href="/customers/create"><span class="glyphicon glyphicon-plus-sign" style="font-size:28px; color:green;"></span></a>
+    </h4>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" id="tbl_customer_list" width="100%">
+      <thead>
+        <tr>
+          <th>Last Name</th>
+          <th>First Name</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each ss}}
+       <tr>
+         <td><strong><a href="/customer/{{_id}}">{{lname}}</a></strong></td>
+         <td>{{fname}}</td>
+         <td>{{phone}}</td>
+       </tr>
+      {{/each}}
+      </tbody>
+    </table>
+  </div>
+  {{#if ss}}
+    <script type="text/javascript">
+    $('#tbl_customer_list').dataTable()
+    </script>
+  {{/if}}
+</template>

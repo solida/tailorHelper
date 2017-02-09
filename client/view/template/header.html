@@ -1,22 +1,22 @@
 <template name="header">
-
     <header class="mdl-layout__header">
         <div class="mdl-layout-icon"></div>
         <div class="mdl-layout__header-row">
             <!--<span class="mdl-layout-title">Simple Header</span>-->
-            <h4 class="mdl-layout-spacer t_center">Welcome to Tailor Helper</h4>
+            <h4 class="mdl-layout-spacer t_center"><a style="color:white;" href="/">Welcome to Tailor Helper</a></h4>
             <!--<nav class="mdl-navigation">
                 <a class="mdl-navigation__link" href="#">Nav link 1</a>
                 <a class="mdl-navigation__link" href="#">Nav link 2</a>
                 <a class="mdl-navigation__link" href="#">Nav link 3</a>
             </nav>-->
+              <a href="/orders/create" style=""><span class="glyphicon glyphicon-plus-sign" style="font-size:30px; color:white;"></span></a>
         </div>
     </header>
 
     <div class="mdl-layout__drawer">
         <nav id="navigation" class="mdl-navigation">
-            <a class="mdl-navigation__link" href="/order/create">New Order</a>
-            <a class="mdl-navigation__link" href="/customer/create">New Customer</a>
+            <a class="mdl-navigation__link" href="/orders/create">New Order</a>
+            <a class="mdl-navigation__link" href="/customers/create">New Customer</a>
             <a class="mdl-navigation__link" href="/invoice">Invoice</a>
             <a id="report_menu" class="mdl-navigation__link" href="#">Reports</a>
         </nav>
@@ -24,9 +24,8 @@
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
             for="report_menu">
             <li class="mdl-menu__item"><a href="/report/orders">Orders</a></li>
-            <li class="mdl-menu__item">Customers</li>
-            <li class="mdl-menu__item">Dirty Datas</li>
-            <li class="mdl-menu__item">Earnings</li>
+            <li class="mdl-menu__item"><a href="/report/customers">Customers</a></li>
+            <li class="mdl-menu__item"><a href="/report/dirtydata">Dirty Data</a></li>
         </ul>
     </div>
 

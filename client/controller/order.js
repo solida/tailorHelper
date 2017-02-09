@@ -1,6 +1,9 @@
+// -------create order---------
+
 Session.set("select_customer","");
 // -createOrder template-
 Template.createOrder.rendered = function() {
+    $('#expectation_date').bootstrapMaterialDatePicker({ format : "DD-MM-YYYY",time:false });
     if(!this._rendered) {
       this._rendered = true;
       $("#select_customer").val(Session.get("select_customer"));
@@ -9,9 +12,6 @@ Template.createOrder.rendered = function() {
       $("#select_type").val(Session.get("current_type"));
     }
 }
-Template.createOrder.helpers({
-
-});
 
 // type->order->info
 Template.createOrder.events({
@@ -143,8 +143,210 @@ Template.orderControl.helpers({
   }
 });
 
+// -------single order/ order detail---------
+
+
 Template.singleOrder.helpers({
   'get_customer':function(id){
-  return Customers.findOne({'_id':id});
-}
+      if(!id){
+        return "Not Entered"
+      }
+      var cus = Customers.findOne({'_id':id});
+      if(!cus){
+        return "Not Found"
+      }
+      return cus.lname + " " + cus.fname;
+  }
 });
+var xeditables_measurement = function(){
+  $('#price,#book,#neck,#full_chest,#full_shoulder,#sleeve,#bicep,#wrist,#waist,#hips').editable({
+    success: function(response, newValue) {
+      var id = $(this).data('pk');
+      var field = $(this).data('name');
+      var data = Number(newValue)
+      //440.95
+      var re = new RegExp("^[0-9]+(\.[0-9]{1,2})?$");
+      if (re.test(data)) {
+        Meteor.call('editOrder',
+                  id,field,data,
+                  function (error, result) {
+                     if(error){
+                       return error
+                     }
+                });
+      } else {
+        return 'Allow digit or decimal number only!'
+      }
+    }
+  });
+  $('#front_jacket_length,#front_chest_width,#back_width,#half_shoulder_width,#full_back_length,#half_back_length,#trouser_waist,#full_sleeve').editable({
+    success: function(response, newValue) {
+      var id = $(this).data('pk');
+      var field = $(this).data('name');
+      var data = Number(newValue)
+      //440.95
+      var re = new RegExp("^[0-9]+(\.[0-9]{1,2})?$");
+      if (re.test(data)) {
+        Meteor.call('editOrder',
+                  id,field,data,
+                  function (error, result) {
+                     if(error){
+                       return error
+                     }
+                });
+      } else {
+        return 'Allow digit or decimal number only!'
+      }
+    }
+  });
+  $('#trouser_outseam,#trouser_inseam,#thigh,#knee,#crotch').editable({
+    success: function(response, newValue) {
+      var id = $(this).data('pk');
+      var field = $(this).data('name');
+      var data = Number(newValue)
+      //440.95
+      var re = new RegExp("^[0-9]+(\.[0-9]{1,2})?$");
+      if (re.test(data)) {
+        Meteor.call('editOrder',
+                  id,field,data,
+                  function (error, result) {
+                     if(error){
+                       return error
+                     }
+                });
+      } else {
+        return 'Allow digit or decimal number only!'
+      }
+    }
+  });
+}
+Template.shirtDetail.rendered = function() {
+  xeditables_measurement();
+}
+Template.jacketDetail.rendered = function() {
+  xeditables_measurement();
+}
+Template.trouserDetail.rendered = function() {
+  xeditables_measurement();
+}
+Template.singleOrder.rendered = function() {
+  xeditables_measurement();
+
+  var Customers_obj=[];
+  cus =  Customers.find().fetch();
+  for (x in cus) {
+    var customer=cus[x]
+    var o = {};
+    o[customer._id] = customer.lname + " " + customer.fname;
+    Customers_obj.push(o);
+  }
+  $('#customer').editable({
+    source: Customers_obj,
+    success: function(response, newValue) {
+      var id = $(this).data('pk');
+      var field = $(this).data('name');
+      var data = newValue
+      Meteor.call('editOrder',
+                id,field,data,
+                function (error, result) {
+                   if(error){
+                     return error
+                   }
+              });
+    }
+  });
+
+  $('#date,#expectation_date').editable({
+    success: function(response, newValue) {
+      var id = $(this).data('pk');
+      var field = $(this).data('name');
+      var data = new Date(newValue)
+      Meteor.call('editOrder',
+                id,field,data,
+                function (error, result) {
+                   if(error){
+                     return error
+                   }
+              });
+    },
+    inputclass : "datepick",
+    placement: function (context, source) {
+      var popupWidth = 336;
+      if(($(window).scrollLeft() + popupWidth) > $(source).offset().left){
+        return "right";
+      } else {
+        return "left";
+      }
+    },
+    datetimepicker : {
+      weekStart : 1
+    },
+  });
+  $('#status').editable({
+    source: STATUS,
+    success: function(response, newValue) {
+      var id = $(this).data('pk');
+      var field = $(this).data('name');
+      var data = newValue
+      Meteor.call('editOrder',
+                id,field,data,
+                function (error, result) {
+                   if(error){
+                     return error
+                   }
+              });
+    }
+  });
+  $('#type').editable({
+    source: ORDER_TYPE,
+    success: function(response, newValue) {
+      var id = $(this).data('pk');
+      var field = $(this).data('name');
+      var data = newValue
+      Meteor.call('editOrder',
+                id,field,data,
+                function (error, result) {
+                   if(error){
+                     return error
+                   }
+              });
+    }
+  });
+  $('#qty').editable({
+    success: function(response, newValue) {
+      var id = $(this).data('pk');
+      var field = $(this).data('name');
+      var data = Number(newValue)
+      //440.95
+      console.log(data)
+      var re = new RegExp("^[0-9]+$");
+      if (re.test(data)) {
+        Meteor.call('editOrder',
+                  id,field,data,
+                  function (error, result) {
+                     if(error){
+                       return error
+                     }
+                });
+      } else {
+        return 'Allow digit number only!'
+      }
+    }
+  });
+  $('#notes').editable({
+    success: function(response, newValue) {
+      var id = $(this).data('pk');
+      var field = $(this).data('name');
+      var data = newValue
+
+        Meteor.call('editOrder',
+                  id,field,data,
+                  function (error, result) {
+                     if(error){
+                       return error
+                     }
+                });
+
+    }
+  });
+}

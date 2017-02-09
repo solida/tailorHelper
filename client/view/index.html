@@ -3,22 +3,31 @@
   <link rel="shortcut icon" href="/img/Barber Scissors-48.ico" type="image/x-icon">
   <link href="/css/tailor_helper.css" rel="stylesheet" type="text/css">
   <link href="/css/mdl-selectfield.css" rel="stylesheet" type="text/css">
-  <link href="/dict/mdl/css/datepicker.min.css" rel="stylesheet" type="text/css">
+  <!-- date picker -->
+
+  <link rel="stylesheet" href="/dict/bootstrap-material-datetimepicker.css" />
+  <!-- datatable -->
+  <link href="/datatable/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+
+  <script src="/dict/jquery-1.12.3.min.js"></script>
+  <script type="text/javascript" src="/dict/material.min.js"></script>
+  <script type="text/javascript" src="/dict/moment-with-locales.min.js"></script>
 
 </head>
 <body>
   <script type="text/javascript" src="/js/mdl-selectfield.js"></script>
   <script type="text/javascript" src="/dict/handlebars.min.js"></script>
-  <script type="text/javascript" src="/dict/mdl/js/material-datepicker.min.js"></script>
 
   <script type="text/javascript" src="/js/tailor_helper.js"></script>
+
 </body>
 
 <template name="mainLayout">
 <div class="mdl-layout mdl-js-layout mdl-layout--overlay-drawer-button">
     {{> header}}
-    <div class="mdl-grid">
+    <div class="mdl-grid container">
         {{> yield}}
     </div>
+
 </div>
 </template>

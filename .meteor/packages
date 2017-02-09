@@ -22,3 +22,7 @@ zodiase:mdl
 iron:router
 session
 momentjs:moment
+twbs:bootstrap
+viacdn:bootstrapjs
+rajit:bootstrap3-datepicker
+loftsteinn:datatables-bootstrap3

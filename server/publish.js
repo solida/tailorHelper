@@ -6,4 +6,7 @@ if (Meteor.isServer) {
   Meteor.publish('customers', function customersPublication() {
     return Customers.find();
   });
+  Meteor.publish('counters', function customersPublication() {
+    return Counters.find();
+  });
 }

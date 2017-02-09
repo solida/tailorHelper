@@ -1,0 +1,25 @@
+<template name="customerDetail">
+   <div class="mdl-cell mdl-cell--12-col">
+      <h4  style="text-align:center;" >Customer Detail</h4>
+      <table class="tbl_order_detail" style="margin:0 auto;">
+        <tr>
+          <td>Last Name</td><td>:</td>
+          <td>
+            <span id="lname" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter last name" data-value="{{lname}}" data-pk="{{_id}}" data-name="lname" data-display="false">{{defaultValue lname}}</span>
+          </td>
+        </tr>
+        <tr>
+          <td>First Name</td><td>:</td>
+          <td>
+            <span id="fname" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter first name" data-value="{{fname}}" data-pk="{{_id}}" data-name="fname" data-display="false">{{defaultValue fname}}</span>
+          </td>
+        </tr>
+        <tr>
+          <td>Phone</td><td>:</td>
+          <td>
+            <span id="phone" class="editable" data-type="text" data-mode="inline" data-placeholder="Enter phone" data-value="{{phone}}" data-pk="{{_id}}" data-name="phone" data-display="false">{{defaultValue phone}}</span>
+          </td>
+        </tr>
+      </table>
+  </div>
+</template>
